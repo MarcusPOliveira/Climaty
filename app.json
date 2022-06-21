@@ -3,6 +3,11 @@
     "name": "Climaty",
     "slug": "Climaty",
     "version": "1.0.0",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/Splash_Light.png",
+      "resizeMode": "contain"
+    },
     "assetBundlePatterns": [
       "**/*"
     ]
