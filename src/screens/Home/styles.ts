@@ -13,7 +13,7 @@ export const Header = styled.View`
   width: 100%;
   height: 13%;
   padding: 15px;
-  margin-top: ${RFValue(10)}px;
+  margin-top: ${RFValue(20)}px;
 `;
 
 export const Refresh = styled.TouchableOpacity`

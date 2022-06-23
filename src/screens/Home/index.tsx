@@ -35,9 +35,9 @@ export function Home() {
           <Title>Períodos</Title>
         </PeriodView>
         <ForecastList>
-          <ForecastCard />
-          <ForecastCard />
-          <ForecastCard />
+          <ForecastCard title='Manhã' temperature='20°' />
+          <ForecastCard title='Tarde' temperature='28°' />
+          <ForecastCard title='Noite' temperature='22°' />
         </ForecastList>
       </Forecast>
     </Container>

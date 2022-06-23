@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { StatusBar, View, useColorScheme } from 'react-native';
-import { ThemeProvider } from 'styled-components/native';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
+import { StatusBar, View } from 'react-native';
+import { ThemeContext } from 'styled-components/native';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import {
@@ -9,9 +9,9 @@ import {
   Poppins_700Bold
 } from '@expo-google-fonts/poppins';
 
-import themes from './src/themes';
-import { Routes } from './src/routes';
+import { useTheme } from '@hooks/theme';
 import AppProvider from './src/hooks';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <AppProvider>
-      <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
+      <StatusBar barStyle="default" translucent backgroundColor="transparent" />
       <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
         <Routes />
       </View>

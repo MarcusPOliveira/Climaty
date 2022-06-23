@@ -7,7 +7,7 @@ export default {
     alert: '#E83F5B',
     white: '#FFFFFF',
     secondary: '#F2F9F5',
-    light_blue: '#B6EAF9',
+    light: '#302F79',
     shape: '#AFAFAF',
     success: '#528F33',
     text: '#FFFFFF',

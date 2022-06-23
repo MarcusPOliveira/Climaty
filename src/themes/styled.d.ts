@@ -10,7 +10,7 @@ declare module 'styled-components' {
       alert: string,
       white: string,
       secondary: string,
-      light_blue: string,
+      light: string,
       shape: string,
       success: string,
       text: string,

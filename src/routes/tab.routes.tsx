@@ -13,15 +13,14 @@ export function TabRoutes() {
 
   const { title, colors } = useContext(ThemeContext);
   const { toggleTheme } = useTheme();
-  console.log(colors)
 
   return (
     <Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveBackgroundColor: colors.background,
-        tabBarInactiveBackgroundColor: colors.background,
+        tabBarActiveBackgroundColor: colors.light,
+        tabBarInactiveBackgroundColor: colors.light,
         tabBarActiveTintColor: title === 'light' ? colors.text : colors.white,
         tabBarInactiveTintColor: colors.shape,
         tabBarStyle: {

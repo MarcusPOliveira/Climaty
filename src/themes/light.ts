@@ -4,7 +4,7 @@ export default {
   colors: {
     primary: '#3EBADD',
     secondary: '#F2F9F5',
-    light_blue: '#B6EAF9',
+    light: '#B4E9F9',
     background: '#DBF6FD',
     shape: '#AFAFAF',
     success: '#528F33',
