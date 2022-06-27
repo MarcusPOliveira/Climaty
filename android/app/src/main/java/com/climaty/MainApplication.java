@@ -14,6 +14,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
 import com.climaty.newarchitecture.MainApplicationReactNativeHost;
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
       List<ReactPackage> packages = new PackageList(this).getPackages();
       // Packages that cannot be autolinked yet can be added manually here, for example:
       // packages.add(new MyReactNativePackage());
+      new RNFusedLocationPackage();
       return packages;
     }
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { MaterialIcons, Entypo } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 import { ThemeContext } from 'styled-components';
 
 import { Switcher } from '@components/Switcher';
@@ -43,7 +43,7 @@ export function Search() {
           onClear={handleClear}
         />
       </SearchView>
-      <MainCard style={{ height: 280 }} />
+
       <Forecast>
         <PeriodView>
           <Entypo name="stopwatch" size={20} color={colors.text} />

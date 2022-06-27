@@ -4,20 +4,20 @@ import Image09d from '../../assets/Icons/09d.svg';
 import {
   Container,
   Period,
-  Temperature,
+  Hour,
 } from './styles';
 
 type Props = {
   title: string;
-  temperature: string;
+  hour: string;
 }
 
-export function ForecastCard({ title, temperature }: Props) {
+export function ForecastCard({ title, hour }: Props) {
   return (
     <Container>
       <Period>{title}</Period>
       <Image09d width={80} height={50} />
-      <Temperature>{temperature}</Temperature>
+      <Hour>{hour}</Hour>
     </Container>
   );
 }

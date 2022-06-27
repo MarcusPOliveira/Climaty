@@ -34,7 +34,7 @@ export const Country = styled.Text`
   margin-left: 5px;
 `;
 
-export const Date = styled.View`
+export const DateHour = styled.View`
   flex-direction: row;
 `;
 

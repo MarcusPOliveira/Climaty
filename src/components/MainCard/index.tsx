@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ViewProps } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
 
-import Image01d from '../../assets/Icons/01d.svg';
+import weatherImages from '@utils/weatherImages';
 import {
   Container,
   Header,
   Location,
   City,
   Country,
-  Date,
+  DateHour,
   Day,
   Month,
   Hour,
@@ -24,47 +24,80 @@ import {
   DetailsLabel
 } from './styles';
 
-type Props = ViewProps & {
-
+export type Props = ViewProps & {
+  name: string;
+  country: string;
+  weather: string;
+  description: string;
+  icon: string;
+  temp: number;
+  temp_min: number;
+  temp_max: number;
+  humidity: number;
+  windSpeed: number;
 }
 
-export function MainCard({ ...rest }: Props) {
+const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+export function MainCard({
+  name, country, windSpeed, weather, description, icon,
+  temp, temp_min, temp_max, humidity, ...rest
+}: Props) {
+  const [day, setDay] = useState('');
+  const [month, setMonth] = useState('');
+  const [hour, setHour] = useState('');
 
   const { title, colors } = useContext(ThemeContext);
+
+  const weatherIcon = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+  useEffect(() => {
+    const dateNow = new Date();
+    const dayNow = dateNow.getDate();
+    const monthNow = dateNow.getMonth();
+    const hourNow = dateNow.getHours();
+    const minutesNow = dateNow.getMinutes();
+
+    setDay(dayNow.toString());
+    setMonth(months[monthNow]);
+    setHour(hourNow + ':' + (minutesNow < 10 ? '0' + minutesNow : minutesNow));
+  }, []);
 
   return (
     <Container {...rest}>
       <Header>
         <Location>
           <MaterialIcons name="place" size={20} color={colors.text} />
-          <City>Belo Horizonte,</City>
-          <Country>Br</Country>
+          <City>{name},</City>
+          <Country>{country}</Country>
         </Location>
-        <Date>
-          <Day>15  </Day>
-          <Month>Maio  |  </Month>
-          <Hour>12:37</Hour>
-        </Date>
+        <DateHour>
+          <Day>{day}  </Day>
+          <Month>{month}  |  </Month>
+          <Hour>{hour}</Hour>
+        </DateHour>
       </Header>
       <Content>
         <Weather>
-          <Image01d width={120} height={70} />
-          <Condition>Sol com{"\n"}algumas núvens</Condition>
+          <WeatherImg
+            source={{ uri: weatherIcon }}
+          />
+          <Condition>{(description)}</Condition>
         </Weather>
-        <Temperature>28°</Temperature>
+        <Temperature>{temp}°</Temperature>
       </Content>
       <Footer>
         <Details>
           <Ionicons name='thermometer-outline' size={22} color={colors.text} />
-          <DetailsLabel>19° - 29°</DetailsLabel>
+          <DetailsLabel>{temp_min}° - {temp_max}°</DetailsLabel>
         </Details>
         <Details>
           <Fontisto name="wind" size={22} color={colors.text} />
-          <DetailsLabel>7.7 m/h</DetailsLabel>
+          <DetailsLabel>{windSpeed} m/h</DetailsLabel>
         </Details>
         <Details>
           <Ionicons name="water-outline" size={22} color={colors.text} />
-          <DetailsLabel>60%</DetailsLabel>
+          <DetailsLabel>{humidity}%</DetailsLabel>
         </Details>
       </Footer>
     </Container>
