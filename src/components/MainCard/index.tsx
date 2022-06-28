@@ -3,7 +3,7 @@ import { ViewProps } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
 
-import weatherImages from '@utils/weatherImages';
+import { weatherImages } from '@utils/weatherImages';
 import {
   Container,
   Header,
@@ -47,11 +47,9 @@ export function MainCard({
   const [month, setMonth] = useState('');
   const [hour, setHour] = useState('');
 
-  const { title, colors } = useContext(ThemeContext);
+  const { colors } = useContext(ThemeContext);
 
-  const weatherIcon = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-
-  useEffect(() => {
+  function GetDateAndHour() {
     const dateNow = new Date();
     const dayNow = dateNow.getDate();
     const monthNow = dateNow.getMonth();
@@ -61,6 +59,10 @@ export function MainCard({
     setDay(dayNow.toString());
     setMonth(months[monthNow]);
     setHour(hourNow + ':' + (minutesNow < 10 ? '0' + minutesNow : minutesNow));
+  }
+
+  useEffect(() => {
+    GetDateAndHour();
   }, []);
 
   return (
@@ -80,7 +82,7 @@ export function MainCard({
       <Content>
         <Weather>
           <WeatherImg
-            source={{ uri: weatherIcon }}
+            source={weatherImages(icon)}
           />
           <Condition>{(description)}</Condition>
         </Weather>

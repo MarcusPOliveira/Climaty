@@ -13,7 +13,7 @@ import Image11dn from '@assets/Icons/11dn.svg';
 import Image13dn from '@assets/Icons/13dn.svg';
 import Image50dn from '@assets/Icons/50dn.svg';
 
-export default function weatherImages(icondId: string) {
+export function weatherImages(icondId: string) {
   switch (icondId) {
     case '01d':
       return Image01d

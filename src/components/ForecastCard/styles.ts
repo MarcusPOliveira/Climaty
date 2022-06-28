@@ -18,6 +18,11 @@ export const Period = styled.Text`
   color:  ${({ theme }) => theme.colors.text};
 `;
 
+export const Image = styled.Image`
+  width: 80px;
+  height: 50px;
+`;
+
 export const Hour = styled.Text`
   font-size: ${RFValue(14)}px;
   font-family:  ${({ theme }) => theme.fonts.title};

@@ -2,11 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Alert, Linking, PermissionsAndroid, Platform, ToastAndroid } from 'react-native';
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 import { ThemeContext } from 'styled-components';
-import { LocationObject } from 'expo-location';
 import Geolocation from 'react-native-geolocation-service';
 
 const { WEATHER_API_KEY } = process.env;
-import { Props } from '@components/MainCard';
 import api from '../../services/api';
 import WeatherData from 'src/dtos/WeatherData';
 import { Load } from '@components/Load';
@@ -22,14 +20,11 @@ import {
   PeriodView,
   ForecastList,
 } from './styles';
-import weatherImages from '@utils/weatherImages';
-import { fromUnixTime } from 'date-fns';
 
 export function Home() {
   const [locationCoords, setLocationCoords] = useState<Geolocation.GeoPosition | null>(null);
-  const [latitude, setLatitude] = useState<Number>();
-  const [longitude, setLongitude] = useState<Number>();
-  const [errorMsg, setErrorMsg] = useState('');
+  const [sunrise, setSunrise] = useState('');
+  const [sunset, setSunset] = useState('');
   const [loadingData, setLoadingData] = useState(false);
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
@@ -107,7 +102,7 @@ export function Home() {
         android: 'high',
         ios: 'best',
       },
-      timeout: 15000,
+      timeout: 20000,
       maximumAge: 10000,
       distanceFilter: 0,
     });
@@ -129,6 +124,15 @@ export function Home() {
     setLoadingData(false);
   }
 
+  async function ConvertTimestampToHour() {
+    const convertedSunrise = await new Date((weatherData?.sys.sunrise) * 1000);
+    const convertedSunset = await new Date((weatherData?.sys.sunset) * 1000);
+    const sunriseHour = `${convertedSunrise.getHours()}:${convertedSunrise.getMinutes() < 10 ? "0" + convertedSunrise.getMinutes() : convertedSunrise.getMinutes()}`;
+    const sunsetHour = `${convertedSunset.getHours()}:${convertedSunset.getMinutes() < 10 ? "0" + convertedSunset.getMinutes() : convertedSunset.getMinutes()}`;
+    setSunrise(sunriseHour.toLocaleString());
+    setSunset(sunsetHour.toLocaleString());
+  }
+
   useEffect(() => {
     async function LocationPermission() {
       if (await hasLocationPermission()) {
@@ -141,6 +145,7 @@ export function Home() {
   useEffect(() => {
     if (locationCoords?.coords?.latitude && locationCoords?.coords?.longitude) {
       LoadWeatherData();
+      ConvertTimestampToHour();
     }
   }, [locationCoords]);
 
@@ -162,8 +167,8 @@ export function Home() {
             <MainCard
               name={weatherData?.name}
               country={weatherData?.sys.country}
-              icon={weatherData?.weather[0].icon}
               description={weatherData?.weather[0].description}
+              icon={weatherData?.weather[0].icon}
               temp={weatherData?.main.temp.toFixed(0)}
               temp_min={weatherData?.main.temp_min.toFixed(0)}
               temp_max={weatherData?.main.temp_max.toFixed(0)}
@@ -176,8 +181,8 @@ export function Home() {
                 <Title>Períodos</Title>
               </PeriodView>
               <ForecastList>
-                <ForecastCard title='Nascer do Sol' hour={weatherData?.sys.sunrise} />
-                <ForecastCard title='Pôr do Sol' hour={weatherData?.sys.sunset} />
+                <ForecastCard title='Nascer do Sol' icon='sunrise' hour={sunrise} />
+                <ForecastCard title='Pôr do Sol' icon='sunset' hour={sunset} />
               </ForecastList>
             </Forecast>
           </>
