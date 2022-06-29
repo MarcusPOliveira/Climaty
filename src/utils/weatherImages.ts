@@ -1,56 +1,41 @@
-//import all images
-import Image01d from '@assets/Icons/01d.svg';
-import Image01n from '@assets/Icons/01n.svg';
-import Image02d from '@assets/Icons/02d.svg';
-import Image02n from '@assets/Icons/02n.svg';
-import Image03d from '@assets/Icons/03d.svg';
-import Image03n from '@assets/Icons/03n.svg';
-import Image04dn from '@assets/Icons/04dn.svg';
-import Image09d from '@assets/Icons/09d.svg';
-import Image09n from '@assets/Icons/09n.svg';
-import Image10dn from '@assets/Icons/10dn.svg';
-import Image11dn from '@assets/Icons/11dn.svg';
-import Image13dn from '@assets/Icons/13dn.svg';
-import Image50dn from '@assets/Icons/50dn.svg';
-
-export function weatherImages(icondId: string) {
-  switch (icondId) {
+export function weatherImages(icon: string) {
+  switch (icon) {
     case '01d':
-      return Image01d
+      return require('@assets/Icons/01d.svg');
     case '01n':
-      return Image01n
+      return require('@assets/Icons/01n.svg');
     case '02d':
-      return Image02d
+      return require('@assets/Icons/02d.svg');
     case '02n':
-      return Image02n
+      return require('@assets/Icons/02n.svg');
     case '03d':
-      return Image03d
+      return require('@assets/Icons/03d.svg');
     case '03n':
-      return Image03n
+      return require('@assets/Icons/03n.svg');
     case '04d':
-      return Image04dn
+      return require('@assets/Icons/04dn.svg');
     case '04n':
-      return Image04dn
+      return require('@assets/Icons/04dn.svg');
     case '09d':
-      return Image09d
+      return require('@assets/Icons/09d.svg');
     case '09n':
-      return Image09n
+      return require('@assets/Icons/09n.svg');
     case '10d':
-      return Image10dn
+      return require('@assets/Icons/10dn.svg');
     case '10n':
-      return Image10dn
+      return require('@assets/Icons/10dn.svg');
     case '11d':
-      return Image11dn
+      return require('@assets/Icons/11dn.svg');
     case '11n':
-      return Image11dn
+      return require('@assets/Icons/11dn.svg');
     case '13d':
-      return Image13dn
+      return require('@assets/Icons/13dn.svg');
     case '13n':
-      return Image13dn
+      return require('@assets/Icons/13dn.svg');
     case '50d':
-      return Image50dn
+      return require('@assets/Icons/50dn.svg');
     case '50n':
-      return Image50dn
+      return require('@assets/Icons/50dn.svg');
     default:
       break
   }

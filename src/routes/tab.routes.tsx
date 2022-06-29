@@ -33,7 +33,6 @@ export function TabRoutes() {
             height: 0.4,
           },
           shadowOpacity: 0.96,
-
         }
       }}
     >

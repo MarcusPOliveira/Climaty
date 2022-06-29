@@ -5,7 +5,6 @@ import Image01n from '../../assets/Icons/01n.svg';
 import {
   Container,
   Period,
-  Image,
   Hour,
 } from './styles';
 

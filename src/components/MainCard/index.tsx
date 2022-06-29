@@ -3,6 +3,7 @@ import { ViewProps } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
 
+import Image02d from '../../assets/Icons/02d.svg';
 import { weatherImages } from '@utils/weatherImages';
 import {
   Container,
@@ -49,6 +50,9 @@ export function MainCard({
 
   const { colors } = useContext(ThemeContext);
 
+  //pegando icone de tempo da api
+  const img = `http://openweathermap.org/img/wn/${icon}@2x.png`
+
   function GetDateAndHour() {
     const dateNow = new Date();
     const dayNow = dateNow.getDate();
@@ -82,7 +86,7 @@ export function MainCard({
       <Content>
         <Weather>
           <WeatherImg
-            source={weatherImages(icon)}
+            source={{ uri: img }}
           />
           <Condition>{(description)}</Condition>
         </Weather>

@@ -28,9 +28,7 @@ export function Home() {
   const [loadingData, setLoadingData] = useState(false);
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
-  const { title, colors } = useContext(ThemeContext);
-
-  //const convertSunrise = fromUnixTime(weatherData?.sys.sunrise);
+  const { colors } = useContext(ThemeContext);
 
   //Permissões
   const hasPermissionIOS = async () => {
@@ -116,7 +114,7 @@ export function Home() {
         `/weather?lat=${locationCoords?.coords?.latitude}&lon=${locationCoords?.coords?.longitude}&appid=${WEATHER_API_KEY}&units=metric&lang=pt_br`,
       );
       setWeatherData(data);
-      console.log("DADOS ===", data);
+      //console.log("DADOS ===", data);
     } catch (error) {
       console.log(error);
       Alert.alert('Erro de conexão', 'Verifique sua conexão com a internet e tente novamente!');
@@ -187,7 +185,6 @@ export function Home() {
             </Forecast>
           </>
         )}
-
     </Container>
   );
 }
